@@ -1,30 +1,29 @@
 <!-- Header -->
         <header id="header" class="{{#is basename 'index'}}alt{{/is}}">
-          <h1 id="logo"><a href="index.html">Tender Years <span>by Anshuman Dubey</span></a></h1>
+          <h1 id="logo"><a href="index.html">Tender Years</a></h1>
           <nav id="nav">
             <ul>
-              <li class="current"><a href="index.html">Welcome</a></li>
-              <li class="submenu">
+              <li class="{{#is basename 'index'}}current{{/is}}"><a href="index.html">Home</a></li>
+              <li class="submenu {{#contains basename 'book'}}current{{/contains}}">
                 <a href="#">Book</a>
                 <ul>
                   <li><a href="left-sidebar.html">Read a Chapter</a></li>
-                  <li><a href="right-sidebar.html">Reviews</a></li>
+                  <li><a href="book-review.html">Reviews</a></li>
                   <li><a href="no-sidebar.html">Order</a></li>
-                  <li><a href="contact.html">Contact</a></li>
                 </ul>
               </li>
-              <li class="submenu">
+              <li class="submenu {{#is basename 'author'}}current{{/is}}">
                 <a href="#">Author</a>
                 <ul>
-                  <li><a href="left-sidebar.html">His Story</a></li>
+                  <li><a href="about.html">His Story</a></li>
                   <li><a href="right-sidebar.html">Journey</a></li>
                   <li><a href="no-sidebar.html">Promise</a></li>
                   <li><a href="contact.html">Other Books</a></li>
                 </ul>
                </li>
-               <li><a href="contact.html" >Contact</a></li>
+               <li class="{{#is basename 'contact'}}current{{/is}}"><a href="contact.html" >Contact</a></li>
                {{#isnt basename 'index'}}
-              <li><a href="#" class="button special">Buy</a></li>
+              <li><a href="#" class="button special">Buy the Book</a></li>
               {{/isnt}}
             </ul>
           </nav>
