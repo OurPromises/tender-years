@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://github.com/OurPromises/hidden-voices/dist/about.html</loc>
+    <lastmod>2015-07-30T20:24:36.586Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://github.com/OurPromises/hidden-voices/dist/blog.html</loc>
+    <lastmod>2015-07-30T20:24:36.588Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://github.com/OurPromises/hidden-voices/dist/contact.html</loc>
+    <lastmod>2015-07-30T20:24:36.589Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://github.com/OurPromises/hidden-voices/dist/index.html</loc>
+    <lastmod>2015-07-30T20:24:36.589Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>
