@@ -17,99 +17,121 @@
 
 module.exports = function(grunt) {
 
-  require('time-grunt')(grunt);
-  require('load-grunt-tasks')(grunt);
+    require('time-grunt')(grunt);
+    require('load-grunt-tasks')(grunt);
 
-  // Project configuration.
-  grunt.initConfig({
+    // Project configuration.
+    grunt.initConfig({
 
-    config: {
-      src: 'src',
-      dist: 'dist'
-    },
-
-    watch: {
-      assemble: {
-        files: ['<%= config.src %>/{content,data,templates}/{,*/}*.{md,hbs,yml}'],
-        tasks: ['assemble']
-      },
-      livereload: {
-        options: {
-          livereload: '<%= connect.options.livereload %>'
+        config: {
+            src: 'src',
+            dist: 'dist'
         },
-        files: [
-          '<%= config.dist %>/{,*/}*.html',
-          '<%= config.dist %>/assets/{,*/}*.css',
-          '<%= config.dist %>/assets/{,*/}*.js',
-          '<%= config.dist %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ]
-      }
-    },
 
-    connect: {
-      options: {
-        port: 9000,
-        livereload: 35729,
-        // change this to '0.0.0.0' to access the server from outside
-        hostname: 'localhost'
-      },
-      livereload: {
-        options: {
-          open: true,
-          base: [
-            '<%= config.dist %>'
-          ]
-        }
-      }
-    },
-
-    assemble: {
-      pages: {
-        options: {
-          flatten: true,
-          assets: '<%= config.dist %>/assets',
-          layout: '<%= config.src %>/templates/layouts/default.hbs',
-          data: '<%= config.src %>/data/*.{json,yml}',
-          partials: '<%= config.src %>/templates/partials/*.hbs',
-          plugins: ['assemble-contrib-permalinks','assemble-contrib-sitemap'],
+        watch: {
+            assemble: {
+                files: ['<%= config.src %>/{content,data,templates}/{,*/}*.{md,hbs,yml}'],
+                tasks: ['assemble']
+            },
+            sass :{
+                files: ['<%= config.src %>/assets/theme/sass/**/*' ],
+                tasks: ['sass','copy']
+            },
+            livereload: {
+                options: {
+                    livereload: '<%= connect.options.livereload %>'
+                },
+                files: [
+                    '<%= config.dist %>/{,*/}*.html',
+                    '<%= config.dist %>/assets/{,*/}{,*/}*.css',
+                    '<%= config.dist %>/assets/{,*/}*.js',
+                    '<%= config.dist %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                ]
+            }
         },
-        files: {
-          '<%= config.dist %>/': ['<%= config.src %>/templates/pages/*.hbs']
+
+        connect: {
+            options: {
+                port: 9000,
+                livereload: 35729,
+                // change this to '0.0.0.0' to access the server from outside
+                hostname: 'localhost'
+            },
+            livereload: {
+                options: {
+                    open: true,
+                    base: [
+                        '<%= config.dist %>'
+                    ]
+                }
+            }
+        },
+
+        assemble: {
+            pages: {
+                options: {
+                    flatten: true,
+                    assets: '<%= config.dist %>/assets',
+                    layout: '<%= config.src %>/templates/layouts/default.hbs',
+                    data: '<%= config.src %>/data/*.{json,yml}',
+                    partials: '<%= config.src %>/templates/partials/*.hbs',
+                    plugins: ['assemble-contrib-permalinks', 'assemble-contrib-sitemap'],
+                },
+                files: {
+                    '<%= config.dist %>/': ['<%= config.src %>/templates/pages/*.hbs']
+                }
+            }
+        },
+
+        copy: {
+            theme: {
+                expand: true,
+                cwd: '<%= config.src %>/assets/theme/',
+                src: ['css/**/*', 'js/*','fonts/*','!sass/*'],
+                dest: '<%= config.dist %>/assets/theme/'
+            },
+            images: {
+                expand: true,
+                cwd: '<%= config.src %>/assets/images/',
+                src: '**',
+                dest: '<%= config.dist %>/assets/images/'
+            }
+        },
+
+        // Before generating any new files,
+        // remove any previously-created files.
+        clean: ['<%= config.dist %>/**/*'],
+
+        sass: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.src %>/assets/theme/sass/',
+                    src: ['**/*.scss'],
+                    dest: '<%= config.src %>/assets/theme/css/',
+                    ext: '.css'
+                }]
+            }
         }
-      }
-    },
+    });
 
-    copy: {
-      theme: {
-        expand: true,
-        cwd: 'src/assets/theme/',
-        src: '**',
-        dest: '<%= config.dist %>/assets/theme/'
-      }
-    },
+    grunt.loadNpmTasks('assemble');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.registerTask('server', [
+        'build',
+        'connect:livereload',
+        'watch'
+    ]);
 
-    // Before generating any new files,
-    // remove any previously-created files.
-    clean: ['<%= config.dist %>/**/*.{html,xml}']
+    grunt.registerTask('build', [
+        'sass',
+        'clean',
+        'copy',
+        'assemble'
+    ]);
 
-  });
-
-  grunt.loadNpmTasks('assemble');
-
-  grunt.registerTask('server', [
-    'build',
-    'connect:livereload',
-    'watch'
-  ]);
-
-  grunt.registerTask('build', [
-    'clean',
-    'copy',
-    'assemble'
-  ]);
-
-  grunt.registerTask('default', [
-    'build'
-  ]);
+    grunt.registerTask('default', [
+        'build'
+    ]);
 
 };

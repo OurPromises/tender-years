@@ -33,8 +33,8 @@
 		banner: (
 			bg:			#898786,
 			fg:			#fff,
-			inner-bg:	#341b2b,
-			inner-fg:	#fff
+			inner-bg:	#1f1e21,
+			inner-fg:	#757575
 		),
 
 		footer: (
@@ -43,7 +43,8 @@
 		),
 
 		one: (
-			bg:			#83d3c9,
+			bg:			#ae5859,
+			//bg:			#a7b0a2,
 			fg:			#fff
 		),
 
@@ -53,7 +54,9 @@
 		),
 
 		three: (
-			bg:			#645862,
+			//bg:			#645862,
+			//bg:			#1f1e21,
+			bg:			#aeb8a8,
 			fg:			#fff
 		),
 
@@ -88,6 +91,11 @@
 		),
 
 		dribbble: (
+			bg:			#da83ae,
+			fg:			#fff
+		),
+
+		pinterest: (
 			bg:			#da83ae,
 			fg:			#fff
 		)
