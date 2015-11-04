@@ -18,4 +18,5 @@ node_modules
 *.sublime-*
 bower_components
 .sass-cache
+dist
 
