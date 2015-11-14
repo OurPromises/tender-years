@@ -18,16 +18,8 @@ node_modules
 *.sublime-*
 bower_components
 .sass-cache
-<<<<<<< HEAD
 dist
-=======
-<<<<<<< HEAD
-src
-reference-theme
-dist
-assets
-.yo-rc.json
-=======
->>>>>>> cecbf498f3f55184e998995f9288ee708fa4ba54
->>>>>>> 48a33be92296667d1e8c7d862bafdecff03b92f5
+
+
+
 
